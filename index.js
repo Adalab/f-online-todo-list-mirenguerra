@@ -1,12 +1,80 @@
 "use strict";
 
-const taskListEl = document.querySelector(".Card__main-list");
-
 let tasksList = ["Tarea 1", "Tarea 2", "Tarea 3"];
+let todayDate = {};
+
+function getDate() {
+  const weekDaysArr = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+  const monthsArr = [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "dicember",
+  ];
+  let today = new Date();
+  let todayDay = today.getDate();
+  let todayWeekDay = weekDaysArr[today.getDay()];
+  let todayMonth = monthsArr[today.getMonth()];
+  let todayYear = today.getFullYear();
+
+  todayDate = {
+    day: todayDay,
+    weekDay: todayWeekDay,
+    month: todayMonth,
+    year: todayYear,
+  };
+
+  printDate();
+}
+
+getDate();
+
+function printDate() {
+  const dateWrapper = document.querySelector(".Card__header-date-wrapper");
+
+  const todayDayEl = document.createElement("p");
+  todayDayEl.classList.add(".date-day");
+  todayDayEl.innerHTML = todayDate.day;
+
+  const todayWeekDayEl = document.createElement("p");
+  todayWeekDayEl.classList.add(".date-weekDay");
+  todayWeekDayEl.innerHTML = todayDate.weekDay;
+
+  const todayMonthEl = document.createElement("p");
+  todayMonthEl.classList.add(".date-month");
+  todayMonthEl.innerHTML = todayDate.month;
+
+  const todayYearEl = document.createElement("p");
+  todayYearEl.classList.add(".date-year");
+  todayYearEl.innerHTML = todayDate.year;
+
+  dateWrapper.append(
+    todayDayEl,
+    todayWeekDayEl,
+    todayMonthEl,
+    todayYearEl
+  );
+}
 
 function printList() {
+  const taskListEl = document.querySelector(".Card__main-list");
   for (let i = 0; i < tasksList.length; i++) {
-
     const newTask = document.createElement("li");
     newTask.id = i;
     newTask.classList.add(".Card__main-element");
