@@ -9,7 +9,28 @@
     <title>My to-do list</title>
   </head>
   <body>
-    <h1>Hola html</h1>
+      <section class="Card">
+        <header class="Card__header">
+            <img class="Card__header-logo" src="./logo.svg" alt="logo lista tareas"/>
+            <div class="Card__header-date-wrapper">
+                <p class="date-dayWeek"></p>
+                <p class="date-dayNumber"></p>
+                <p class="date-dayMonth-Year"></p>
+            </div>
+        </header>
+        <main class="Card__main">
+            <ul class="Card__main-list"></ul>
+        </main>
+        <footer class="Card__footer">
+            <button class="Card__footer-btn">+</button>
+        </footer>
+        <section class="Card__modal">
+            <label class="Card__modal-title" for="newTask">Nueva tarea</label>
+            <input class="Card__modal-input" type="text" name="newTask" id="newTask"/>
+            <button class="Card__modal-btn">Añadir</button>
+        </section>
+      </section>
+
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
