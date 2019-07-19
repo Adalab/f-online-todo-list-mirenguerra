@@ -5,7 +5,7 @@ let tasksList = [
   { name: "Tarea 2", checked: false },
   { name: "Tarea 3", checked: false },
 ];
-let taskElement={};
+let taskElement = {};
 let todayDate = {};
 initApp();
 
@@ -106,22 +106,19 @@ function printDate() {
 function addNewTask() {
   const addNewTaskBtnEl = document.querySelector(".Card__modal-btn");
   addNewTaskBtnEl.addEventListener("click", handleAddNewTask);
- 
-
 }
-console.log(tasksList);
 
 function handleAddNewTask() {
   const addNewTaskNameEl = document.querySelector(".Card__modal-input");
-  taskElement = {"name":addNewTaskNameEl.value, "checked":false};
+  taskElement = { name: addNewTaskNameEl.value, checked: false };
   tasksList.push(taskElement);
   console.log(tasksList);
   updateList();
 }
 
-function printNewTask(){
-  if(taskElement.name!==undefined){
-  const taskListEl = document.querySelector(".Card__main-list");
+function printNewTask() {
+  if (taskElement.name !== undefined) {
+    const taskListEl = document.querySelector(".Card__main-list");
     const newTask = document.createElement("li");
     newTask.id = tasksList.length;
     newTask.classList.add(".Card__main-element");
@@ -132,6 +129,7 @@ function printNewTask(){
     taskCheckbox.id = tasksList.length;
     taskCheckbox.checked = taskElement.checked;
     taskCheckbox.classList.add(".Card__main-element-checkbox");
+    taskCheckbox.addEventListener("click", handleCheckbox);
 
     const taskName = document.createElement("p");
     taskName.classList.add(".Card__main-element-name");
@@ -140,7 +138,9 @@ function printNewTask(){
 
     newTask.append(taskCheckbox, taskName);
     taskListEl.appendChild(newTask);
-}}
+    saveTaskListAtLocalStorage();
+  }
+}
 
 function printList() {
   const taskListEl = document.querySelector(".Card__main-list");
@@ -155,6 +155,7 @@ function printList() {
     taskCheckbox.id = i;
     taskCheckbox.checked = tasksList[i].checked;
     taskCheckbox.classList.add(".Card__main-element-checkbox");
+    taskCheckbox.addEventListener("click", handleCheckbox);
 
     const taskName = document.createElement("p");
     taskName.classList.add(".Card__main-element-name");
@@ -164,4 +165,12 @@ function printList() {
     newTask.append(taskCheckbox, taskName);
     taskListEl.appendChild(newTask);
   }
+}
+
+function handleCheckbox(event) {
+  const checked = event.target.checked;
+  const id = event.target.id;
+
+  tasksList[id].checked = checked;
+  saveTaskListAtLocalStorage();
 }
