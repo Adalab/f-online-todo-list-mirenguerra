@@ -1,8 +1,16 @@
 * {
   margin: 0;
   padding: 0;
-  text-decoration: none;
   box-sizing: border-box;
   font-family: "Roboto Slab", serif;
   list-style: none;
+}
+
+.Card__header-logo {
+  height: 100px;
+  width: auto;
+}
+
+.Card__main-element-name{
+  text-decoration: line-through;
 }

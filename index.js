@@ -1,9 +1,49 @@
 "use strict";
 
-let tasksList = ["Tarea 1", "Tarea 2", "Tarea 3"];
+let tasksList = [
+  { name: "Tarea 1", checked: false },
+  { name: "Tarea 2", checked: false },
+  { name: "Tarea 3", checked: false },
+];
+let taskElement={};
 let todayDate = {};
+initApp();
+
+function initApp() {
+  initCurrentDate();
+  initTaskList();
+}
+
+function initCurrentDate() {
+  getDate();
+  printDate();
+}
+
+function initTaskList() {
+  getListFromLocalStorage();
+  printList();
+}
+
+function updateList() {
+  saveTaskListAtLocalStorage();
+  addNewTask();
+  printNewTask();
+}
+updateList();
+
+function getListFromLocalStorage() {
+  const tasksListfromLS = localStorage.getItem("tasksList");
+  if (tasksListfromLS) {
+    tasksList = JSON.parse(tasksListfromLS);
+  }
+}
+
+function saveTaskListAtLocalStorage() {
+  localStorage.setItem("tasksList", JSON.stringify(tasksList));
+}
 
 function getDate() {
+  // https://momentjs.com/
   const weekDaysArr = [
     "domingo",
     "lunes",
@@ -39,11 +79,7 @@ function getDate() {
     month: todayMonth,
     year: todayYear,
   };
-
-  printDate();
 }
-
-getDate();
 
 function printDate() {
   const dateWrapper = document.querySelector(".Card__header-date-wrapper");
@@ -64,13 +100,47 @@ function printDate() {
   todayYearEl.classList.add(".date-year");
   todayYearEl.innerHTML = todayDate.year;
 
-  dateWrapper.append(
-    todayDayEl,
-    todayWeekDayEl,
-    todayMonthEl,
-    todayYearEl
-  );
+  dateWrapper.append(todayDayEl, todayWeekDayEl, todayMonthEl, todayYearEl);
 }
+
+function addNewTask() {
+  const addNewTaskBtnEl = document.querySelector(".Card__modal-btn");
+  addNewTaskBtnEl.addEventListener("click", handleAddNewTask);
+ 
+
+}
+console.log(tasksList);
+
+function handleAddNewTask() {
+  const addNewTaskNameEl = document.querySelector(".Card__modal-input");
+  taskElement = {"name":addNewTaskNameEl.value, "checked":false};
+  tasksList.push(taskElement);
+  console.log(tasksList);
+  updateList();
+}
+
+function printNewTask(){
+  if(taskElement.name!==undefined){
+  const taskListEl = document.querySelector(".Card__main-list");
+    const newTask = document.createElement("li");
+    newTask.id = tasksList.length;
+    newTask.classList.add(".Card__main-element");
+
+    const taskCheckbox = document.createElement("input");
+    taskCheckbox.type = "checkbox";
+    taskCheckbox.name = "task";
+    taskCheckbox.id = tasksList.length;
+    taskCheckbox.checked = taskElement.checked;
+    taskCheckbox.classList.add(".Card__main-element-checkbox");
+
+    const taskName = document.createElement("p");
+    taskName.classList.add(".Card__main-element-name");
+    const newTaskName = document.createTextNode(taskElement.name);
+    taskName.appendChild(newTaskName);
+
+    newTask.append(taskCheckbox, taskName);
+    taskListEl.appendChild(newTask);
+}}
 
 function printList() {
   const taskListEl = document.querySelector(".Card__main-list");
@@ -83,17 +153,15 @@ function printList() {
     taskCheckbox.type = "checkbox";
     taskCheckbox.name = "task";
     taskCheckbox.id = i;
-    taskCheckbox.checked = false;
+    taskCheckbox.checked = tasksList[i].checked;
     taskCheckbox.classList.add(".Card__main-element-checkbox");
 
     const taskName = document.createElement("p");
     taskName.classList.add(".Card__main-element-name");
-    const newTaskName = document.createTextNode(tasksList[i]);
+    const newTaskName = document.createTextNode(tasksList[i].name);
     taskName.appendChild(newTaskName);
 
-    newTask.appendChild(taskCheckbox);
-    newTask.appendChild(taskName);
+    newTask.append(taskCheckbox, taskName);
     taskListEl.appendChild(newTask);
   }
 }
-printList();
