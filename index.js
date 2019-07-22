@@ -3,7 +3,7 @@
 const taskListEl = document.querySelector(".Card__main-list");
 const addNewTaskNameEl = document.querySelector(".Card__modal-input");
 const openFormBtn = document.querySelector(".Card__footer-btn");
-const clearBtn = document.querySelector('.clear-icon');
+const clearBtn = document.querySelector(".clear-icon");
 
 let tasksList = [];
 let taskElement = {};
@@ -74,14 +74,6 @@ function getDate() {
   let todayMonth = monthsArr[today.getMonth()];
   let todayYear = today.getFullYear();
 
- // https://momentjs.com/
-  // const moment = 'moment';
-  // let today = moment.locale();   
-  // let todayDay = moment(today).format('DDDD');   
-  // let todayWeekDay = moment(today).format('dddd');
-  // let todayMonth = moment(today).format('MMMMM');   
-  // let todayYear = moment(today).format('YYYY');   
-
   todayDate = {
     day: todayDay,
     weekDay: todayWeekDay,
@@ -116,7 +108,6 @@ function addNewTask() {
 function handleAddNewTask() {
   taskElement = { name: addNewTaskNameEl.value, checked: false };
   tasksList.push(taskElement);
-  console.log(tasksList);
   updateList();
 }
 
@@ -128,7 +119,6 @@ function printList() {
 
 function printNewTask(checked, name, index) {
   if (name !== undefined && name !== "") {
-   
     const newTask = document.createElement("li");
     newTask.id = index;
     newTask.classList.add("Card__main-element");
@@ -174,9 +164,9 @@ function handleCheckbox(event) {
 }
 
 function clearTasksList() {
-  localStorage.removeItem('tasksList');
-  taskListEl.innerHTML = '';
+  localStorage.removeItem("tasksList");
+  taskListEl.innerHTML = "";
 }
 
 openFormBtn.addEventListener("click", openForm);
-clearBtn.addEventListener('click', clearTasksList);
+clearBtn.addEventListener("click", clearTasksList);
