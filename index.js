@@ -1,15 +1,13 @@
 "use strict";
 
 const addNewTaskNameEl = document.querySelector(".Card__modal-input");
-const openFormBtn = document.querySelector('.Card__footer-btn');
-let tasksList = [
-  { name: "Tarea 1", checked: false },
-  { name: "Tarea 2", checked: false },
-  { name: "Tarea 3", checked: false },
-];
+const openFormBtn = document.querySelector(".Card__footer-btn");
+
+let tasksList = [];
 let taskElement = {};
 let todayDate = {};
 initApp();
+console.log(tasksList);
 
 function initApp() {
   initCurrentDate();
@@ -95,10 +93,10 @@ function printDate() {
 }
 
 function openForm() {
-  const modalWrapperEl = document.querySelector('.Card__modal-wrapper');
-  modalWrapperEl.classList.remove('hidden');
-  openFormBtn.classList.add('hidden');
-  addNewTaskNameEl.value = '';
+  const modalWrapperEl = document.querySelector(".Card__modal-wrapper");
+  modalWrapperEl.classList.remove("hidden");
+  openFormBtn.classList.add("hidden");
+  addNewTaskNameEl.value = "";
 }
 
 function addNewTask() {
@@ -107,43 +105,46 @@ function addNewTask() {
 }
 
 function handleAddNewTask() {
-
   taskElement = { name: addNewTaskNameEl.value, checked: false };
   tasksList.push(taskElement);
   console.log(tasksList);
   updateList();
-  saveTaskListAtLocalStorage();
-}
-
-function printNewTask(checked, name) {
-  if (name !== undefined) {
-    const taskListEl = document.querySelector(".Card__main-list");
-    const newTask = document.createElement("li");
-    newTask.id = tasksList.length;
-    newTask.classList.add(".Card__main-element");
-
-    const taskCheckbox = document.createElement("input");
-    taskCheckbox.type = "checkbox";
-    taskCheckbox.name = "task";
-    taskCheckbox.id = tasksList.length;
-    taskCheckbox.checked = checked;
-    taskCheckbox.classList.add(".Card__main-element-checkbox");
-    taskCheckbox.addEventListener("change", handleCheckbox);
-
-    const taskName = document.createElement("p");
-    taskName.classList.add(".Card__main-element-name");
-    const newTaskName = document.createTextNode(name);
-    taskName.appendChild(newTaskName);
-
-    newTask.append(taskCheckbox, taskName);
-    taskListEl.appendChild(newTask);
-    saveTaskListAtLocalStorage();
-  }
 }
 
 function printList() {
   for (let i = 0; i < tasksList.length; i++) {
-    printNewTask(tasksList[i].checked, tasksList[i].name);
+    printNewTask(tasksList[i].checked, tasksList[i].name, i);
+  }
+}
+
+function printNewTask(checked, name, index) {
+  if (name !== undefined && name !== "") {
+    const taskListEl = document.querySelector(".Card__main-list");
+    const newTask = document.createElement("li");
+    newTask.id = index;
+    newTask.classList.add("Card__main-element");
+
+    const taskCheckbox = document.createElement("input");
+    taskCheckbox.type = "checkbox";
+    taskCheckbox.name = "task";
+    taskCheckbox.id = index;
+    taskCheckbox.checked = checked;
+    taskCheckbox.classList.add("Card__main-element-checkbox");
+    taskCheckbox.addEventListener("click", handleCheckbox);
+
+    const taskName = document.createElement("p");
+    taskName.classList.add("Card__main-element-name");
+    const newTaskName = document.createTextNode(name);
+    taskName.appendChild(newTaskName);
+
+    if (checked === true) {
+      newTask.classList.add("task-selected");
+    } else {
+      newTask.classList.remove("task-selected");
+    }
+
+    newTask.append(taskCheckbox, taskName);
+    taskListEl.appendChild(newTask);
   }
 }
 
@@ -152,7 +153,15 @@ function handleCheckbox(event) {
   const id = event.target.id;
 
   tasksList[id].checked = checked;
-  saveTaskListAtLocalStorage();
+
+  const parentLabel = this.parentElement;
+  if (this.checked) {
+    parentLabel.classList.add("task-selected");
+  } else {
+    parentLabel.classList.remove("task-selected");
+  }
+
+  updateList();
 }
 
-openFormBtn.addEventListener('click', openForm);
+openFormBtn.addEventListener("click", openForm);
