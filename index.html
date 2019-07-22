@@ -5,11 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <title>My to-do list</title>
   </head>
   <body>
-    <h1>Hola html</h1>
+      <section class="Card">
+        <header class="Card__header">
+            <img class="Card__header-logo" src="./logo.svg" alt="logo lista tareas"/>
+            <div class="Card__header-date-wrapper"/>
+            <p class="date-day"></p>
+            <div>
+              <p class="date-weekDay"></p>
+              <p class="date-month-year"></p>
+            </div>
+        </header>
+        <main class="Card__main">
+            <ul class="Card__main-list"></ul>
+            <div class="Card__main-back-card-first"></div>
+            <div class="Card__main-back-card-second"></div>
+        </main>
+        <footer class="Card__footer">
+            <button class="Card__footer-btn">+</button>
+        </footer>
+        <section class="Card__modal-wrapper hidden" >
+          <form class="Card__modal">
+            <label class="Card__modal-title" for="newTask">Nueva tarea</label>
+            <input class="Card__modal-input" type="text" name="newTask" id="newTask"/>
+            <button class="Card__modal-btn">Añadir</button>
+          </form>
+      </section>
+
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
