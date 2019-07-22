@@ -1,7 +1,9 @@
 "use strict";
 
+const taskListEl = document.querySelector(".Card__main-list");
 const addNewTaskNameEl = document.querySelector(".Card__modal-input");
 const openFormBtn = document.querySelector(".Card__footer-btn");
+const clearBtn = document.querySelector('.clear-icon');
 
 let tasksList = [];
 let taskElement = {};
@@ -43,7 +45,6 @@ function saveTaskListAtLocalStorage() {
 }
 
 function getDate() {
-  // https://momentjs.com/
   const weekDaysArr = [
     "domingo",
     "lunes",
@@ -67,13 +68,19 @@ function getDate() {
     "novuembre",
     "deciembre",
   ];
-  
-  const moment = 'moment';
-  let today = moment.locale();  
-  let todayDay = moment(today).format('DDDD');   
-  let todayWeekDay = moment(today).format('dddd');
-  let todayMonth = moment(today).format('MMMMM');   ;
-  let todayYear = moment(today).format('YYYY');   
+  let today = new Date();
+  let todayDay = today.getDate();
+  let todayWeekDay = weekDaysArr[today.getDay()];
+  let todayMonth = monthsArr[today.getMonth()];
+  let todayYear = today.getFullYear();
+
+ // https://momentjs.com/
+  // const moment = 'moment';
+  // let today = moment.locale();   
+  // let todayDay = moment(today).format('DDDD');   
+  // let todayWeekDay = moment(today).format('dddd');
+  // let todayMonth = moment(today).format('MMMMM');   
+  // let todayYear = moment(today).format('YYYY');   
 
   todayDate = {
     day: todayDay,
@@ -121,7 +128,7 @@ function printList() {
 
 function printNewTask(checked, name, index) {
   if (name !== undefined && name !== "") {
-    const taskListEl = document.querySelector(".Card__main-list");
+   
     const newTask = document.createElement("li");
     newTask.id = index;
     newTask.classList.add("Card__main-element");
@@ -166,4 +173,10 @@ function handleCheckbox(event) {
   updateList();
 }
 
+function clearTasksList() {
+  localStorage.removeItem('tasksList');
+  taskListEl.innerHTML = '';
+}
+
 openFormBtn.addEventListener("click", openForm);
+clearBtn.addEventListener('click', clearTasksList);
