@@ -1,3 +1,13 @@
+:root {
+  --primary-color: #f780d3;
+  --secondary-color: #a8149c;
+  --terciary-color: #8c099d;
+  --shadow-color: #9e6997;
+  --light-color: #ffffff;
+  --caution-color: #f75c5c;
+  --text-color: #595c5e;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,16 +19,19 @@
 body {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(#f780d3, #a8149c);
+  background-image: linear-gradient(
+    var(--primary-color),
+    var(--secondary-color)
+  );
   font-family: "M PLUS Rounded 1c", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #595c5e;
+  color: var(--text-color);
 }
 
 .Card {
-  background-color: #ffffff;
+  background-color: var(--light-color);
   width: 280px;
   height: 500px;
   border-radius: 5px;
@@ -27,7 +40,7 @@ body {
 
 .Card__header {
   height: 15%;
-  border-bottom: 1px solid #f780d3;
+  border-bottom: 1px solid var(--primary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,9 +58,9 @@ body {
   margin-right: 20px;
 }
 
-.date-day{
+.date-day {
   font-size: 40px;
-  color: #a8149c;
+  color: var(--secondary-color);
   font-weight: 500;
   margin-right: 5px;
 }
@@ -71,37 +84,42 @@ body {
   padding: 20px 0 20px 20px;
 }
 
-.Card__main-element{
+.Card__main-element {
   display: flex;
   flex-direction: row;
   padding-left: 35px;
   margin-bottom: 12px;
 }
 
-.Card__main-element-name{
+.Card__main-element-checkbox {
+  height: 20px;
+  width: 20px;
+}
+
+.Card__main-element-name {
   padding-left: 10px;
 }
 
-.Card__main-back-card-first{
+.Card__main-back-card-first {
   position: absolute;
   width: 292px;
   height: 480px;
   top: 0;
-  background-color: #ffffff;
+  background-color: var(--light-color);
   opacity: 0.9;
-  transform: translate(-2%,2%);
+  transform: translate(-2%, 2%);
   z-index: -1;
   border-radius: 5px;
 }
 
-.Card__main-back-card-second{
+.Card__main-back-card-second {
   position: absolute;
   width: 304px;
   height: 460px;
   top: 0;
-  background-color: #ffffff;
+  background-color: var(--light-color);
   opacity: 0.8;
-  transform: translate(-4%,4%);
+  transform: translate(-4%, 4%);
   z-index: -2;
   border-radius: 5px;
 }
@@ -111,22 +129,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #a8149c;
+  border-top: 1px solid var(--secondary-color);
 }
 
 .Card__footer-btn {
   width: 50px;
   height: 50px;
-  background-color: #f780d3;
+  background-color: var(--primary-color);
   border-radius: 50px;
   border: none;
-  color: #a8149c;
+  color: var(--secondary-color);
   font-size: 40px;
 }
 
 .Card__footer-btn:hover {
-  color: #f780d3;
-  background-color: #a8149c;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
   transition: transform ease 1s;
 }
 
@@ -146,38 +164,36 @@ body {
 .Card__modal {
   width: 240px;
   height: 160px;
-  background-color: rgb(140, 9, 157);
+  background-color: var(--terciary-color);
   margin-bottom: 25px;
   border-radius: 5px;
-  box-shadow: 3px 3px 10px rgb(158, 105, 151);
+  box-shadow: 3px 3px 10px var(--shadow-color);
   display: flex;
   flex-direction: column;
   padding: 25px;
 }
 
 .Card__modal-title {
-  color: white;
+  color: var(--light-color);
   font-size: 12px;
   margin-bottom: 5px;
 }
 
 .Card__modal-input {
   background-color: transparent;
-  border: 1px solid white;
+  border: 1px solid var(--light-color);
   border-radius: 5px;
   height: 40px;
-  color: white;
+  color: var(--light-color);
   font-size: 16px;
   padding-left: 5px;
-  font-family: "M PLUS Rounded 1c", sans-serif;
   margin-bottom: 20px;
 }
 
 .Card__modal-btn {
-  border: 1px solid white;
+  border: 1px solid var(--light-color);
   border-radius: 20px;
-  color: white;
-  font-family: "M PLUS Rounded 1c", sans-serif;
+  color: var(--light-color);
   font-size: 16px;
   width: 100px;
   height: 35px;
@@ -185,7 +201,7 @@ body {
 }
 
 .Card__modal-btn:hover {
-  background-color: rgb(158, 105, 151);
+  background-color: var(--shadow-color);
 }
 
 .hidden {
@@ -195,4 +211,15 @@ body {
 .task-selected {
   color: lightgray;
   text-decoration-line: line-through;
+}
+
+.clear-icon {
+  color: var(--secondary-color);
+  position: absolute;
+  right: 8px;
+  bottom: 80px;
+}
+
+.clear-icon:hover {
+  color: var(--caution-color);
 }
