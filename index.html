@@ -13,18 +13,26 @@
         <header class="Card__header">
             <img class="Card__header-logo" src="./logo.svg" alt="logo lista tareas"/>
             <div class="Card__header-date-wrapper"/>
+            <p class="date-day"></p>
+            <div>
+              <p class="date-weekDay"></p>
+              <p class="date-month-year"></p>
+            </div>
         </header>
         <main class="Card__main">
             <ul class="Card__main-list"></ul>
+            <div class="Card__main-back-card-first"></div>
+            <div class="Card__main-back-card-second"></div>
         </main>
         <footer class="Card__footer">
             <button class="Card__footer-btn">+</button>
         </footer>
-        <section class="Card__modal">
+        <section class="Card__modal-wrapper hidden" >
+          <form class="Card__modal">
             <label class="Card__modal-title" for="newTask">Nueva tarea</label>
             <input class="Card__modal-input" type="text" name="newTask" id="newTask"/>
             <button class="Card__modal-btn">Añadir</button>
-        </section>
+          </form>
       </section>
 
     <script type="text/javascript" src="index.js"></script>

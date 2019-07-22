@@ -82,25 +82,14 @@ function getDate() {
 }
 
 function printDate() {
-  const dateWrapper = document.querySelector(".Card__header-date-wrapper");
-
-  const todayDayEl = document.createElement("p");
-  todayDayEl.classList.add(".date-day");
+  const todayDayEl = document.querySelector('.date-day')
   todayDayEl.innerHTML = todayDate.day;
 
-  const todayWeekDayEl = document.createElement("p");
-  todayWeekDayEl.classList.add(".date-weekDay");
+  const todayWeekDayEl = document.querySelector('.date-weekDay');
   todayWeekDayEl.innerHTML = todayDate.weekDay;
 
-  const todayMonthEl = document.createElement("p");
-  todayMonthEl.classList.add(".date-month");
-  todayMonthEl.innerHTML = todayDate.month;
-
-  const todayYearEl = document.createElement("p");
-  todayYearEl.classList.add(".date-year");
-  todayYearEl.innerHTML = todayDate.year;
-
-  dateWrapper.append(todayDayEl, todayWeekDayEl, todayMonthEl, todayYearEl);
+  const todayMonthYearEl = document.querySelector(".date-month-year");
+  todayMonthYearEl.innerHTML = todayDate.month +', '+ todayDate.year;
 }
 
 function addNewTask() {
