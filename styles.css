@@ -7,13 +7,177 @@
   list-style: none;
 }
 
-body{
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(var(--primary-color), var(--secondary-color));
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #595C5E;
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgb(247, 128, 211), rgb(168, 20, 156));
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #595c5e;
+}
+
+.Card {
+  background-color: #ffffff;
+  width: 280px;
+  height: 500px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.Card__header {
+  height: 15%;
+  border-bottom: 1px solid rgb(247, 128, 211);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Card__header-logo {
+  height: 60px;
+  width: auto;
+  margin-left: 10px;
+}
+
+.Card__header-date-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.date-day{
+  font-size: 40px;
+  color: rgb(168, 20, 156);
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.date-weekDay {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.date-month-year {
+  font-size: 12px;
+}
+
+.Card__main {
+  height: 70%;
+}
+
+.Card__main-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 20px 20px;
+}
+
+.Card__main-back-card-first{
+  position: absolute;
+  width: 292px;
+  height: 480px;
+  top: 0;
+  background-color: #ffffff;
+  opacity: 0.9;
+  transform: translate(-2%,2%);
+  z-index: -1;
+  border-radius: 5px;
+}
+
+.Card__main-back-card-second{
+  position: absolute;
+  width: 304px;
+  height: 460px;
+  top: 0;
+  background-color: #ffffff;
+  opacity: 0.8;
+  transform: translate(-4%,4%);
+  z-index: -2;
+  border-radius: 5px;
+}
+
+.Card__footer {
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgb(168, 20, 156);
+}
+
+.Card__footer-btn {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(247, 128, 211);
+  border-radius: 50px;
+  border: none;
+  color: rgb(168, 20, 156);
+  font-size: 40px;
+}
+
+.Card__footer-btn:hover {
+  color: rgb(247, 128, 211);
+  background-color: rgb(168, 20, 156);
+  transition: transform ease 1s;
+}
+
+.Card__modal-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 280px;
+  height: 500px;
+  border-radius: 5px;
+  top: 0;
+}
+
+.Card__modal {
+  width: 240px;
+  height: 160px;
+  background-color: rgb(140, 9, 157);
+  margin-bottom: 25px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgb(158, 105, 151);
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.Card__modal-title {
+  color: white;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.Card__modal-input {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 5px;
+  height: 40px;
+  color: white;
+  font-size: 16px;
+  padding-left: 5px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  margin-bottom: 20px;
+}
+
+.Card__modal-btn {
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 16px;
+  width: 100px;
+  height: 35px;
+  margin: 0 auto;
+}
+
+.Card__modal-btn:hover {
+  background-color: rgb(158, 105, 151);
+}
+
+.hidden {
+  display: none;
 }
