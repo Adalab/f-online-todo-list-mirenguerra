@@ -67,11 +67,13 @@ function getDate() {
     "novuembre",
     "deciembre",
   ];
-  let today = new Date();
-  let todayDay = today.getDate();
-  let todayWeekDay = weekDaysArr[today.getDay()];
-  let todayMonth = monthsArr[today.getMonth()];
-  let todayYear = today.getFullYear();
+  
+  const moment = 'moment';
+  let today = moment.locale();  
+  let todayDay = moment(today).format('DDDD');   
+  let todayWeekDay = moment(today).format('dddd');
+  let todayMonth = moment(today).format('MMMMM');   ;
+  let todayYear = moment(today).format('YYYY');   
 
   todayDate = {
     day: todayDay,
