@@ -1,5 +1,7 @@
 "use strict";
 
+const addNewTaskNameEl = document.querySelector(".Card__modal-input");
+const openFormBtn = document.querySelector('.Card__footer-btn');
 let tasksList = [
   { name: "Tarea 1", checked: false },
   { name: "Tarea 2", checked: false },
@@ -82,14 +84,21 @@ function getDate() {
 }
 
 function printDate() {
-  const todayDayEl = document.querySelector('.date-day')
+  const todayDayEl = document.querySelector(".date-day");
   todayDayEl.innerHTML = todayDate.day;
 
-  const todayWeekDayEl = document.querySelector('.date-weekDay');
+  const todayWeekDayEl = document.querySelector(".date-weekDay");
   todayWeekDayEl.innerHTML = todayDate.weekDay;
 
   const todayMonthYearEl = document.querySelector(".date-month-year");
-  todayMonthYearEl.innerHTML = todayDate.month +', '+ todayDate.year;
+  todayMonthYearEl.innerHTML = todayDate.month + ", " + todayDate.year;
+}
+
+function openForm() {
+  const modalWrapperEl = document.querySelector('.Card__modal-wrapper');
+  modalWrapperEl.classList.remove('hidden');
+  openFormBtn.classList.add('hidden');
+  addNewTaskNameEl.value = '';
 }
 
 function addNewTask() {
@@ -98,15 +107,16 @@ function addNewTask() {
 }
 
 function handleAddNewTask() {
-  const addNewTaskNameEl = document.querySelector(".Card__modal-input");
+
   taskElement = { name: addNewTaskNameEl.value, checked: false };
   tasksList.push(taskElement);
   console.log(tasksList);
   updateList();
+  saveTaskListAtLocalStorage();
 }
 
-function printNewTask() {
-  if (taskElement.name !== undefined) {
+function printNewTask(checked, name) {
+  if (name !== undefined) {
     const taskListEl = document.querySelector(".Card__main-list");
     const newTask = document.createElement("li");
     newTask.id = tasksList.length;
@@ -116,13 +126,13 @@ function printNewTask() {
     taskCheckbox.type = "checkbox";
     taskCheckbox.name = "task";
     taskCheckbox.id = tasksList.length;
-    taskCheckbox.checked = taskElement.checked;
+    taskCheckbox.checked = checked;
     taskCheckbox.classList.add(".Card__main-element-checkbox");
-    taskCheckbox.addEventListener("click", handleCheckbox);
+    taskCheckbox.addEventListener("change", handleCheckbox);
 
     const taskName = document.createElement("p");
     taskName.classList.add(".Card__main-element-name");
-    const newTaskName = document.createTextNode(taskElement.name);
+    const newTaskName = document.createTextNode(name);
     taskName.appendChild(newTaskName);
 
     newTask.append(taskCheckbox, taskName);
@@ -132,27 +142,8 @@ function printNewTask() {
 }
 
 function printList() {
-  const taskListEl = document.querySelector(".Card__main-list");
   for (let i = 0; i < tasksList.length; i++) {
-    const newTask = document.createElement("li");
-    newTask.id = i;
-    newTask.classList.add(".Card__main-element");
-
-    const taskCheckbox = document.createElement("input");
-    taskCheckbox.type = "checkbox";
-    taskCheckbox.name = "task";
-    taskCheckbox.id = i;
-    taskCheckbox.checked = tasksList[i].checked;
-    taskCheckbox.classList.add(".Card__main-element-checkbox");
-    taskCheckbox.addEventListener("click", handleCheckbox);
-
-    const taskName = document.createElement("p");
-    taskName.classList.add(".Card__main-element-name");
-    const newTaskName = document.createTextNode(tasksList[i].name);
-    taskName.appendChild(newTaskName);
-
-    newTask.append(taskCheckbox, taskName);
-    taskListEl.appendChild(newTask);
+    printNewTask(tasksList[i].checked, tasksList[i].name);
   }
 }
 
@@ -163,3 +154,5 @@ function handleCheckbox(event) {
   tasksList[id].checked = checked;
   saveTaskListAtLocalStorage();
 }
+
+openFormBtn.addEventListener('click', openForm);
