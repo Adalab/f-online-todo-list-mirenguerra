@@ -140,6 +140,7 @@ body {
   border: none;
   color: var(--secondary-color);
   font-size: 40px;
+  cursor: pointer;
 }
 
 .Card__footer-btn:hover {
@@ -193,15 +194,17 @@ body {
 .Card__modal-btn {
   border: 1px solid var(--light-color);
   border-radius: 20px;
-  color: var(--light-color);
+  color: var(--secondary-color);
   font-size: 16px;
   width: 100px;
   height: 35px;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .Card__modal-btn:hover {
   background-color: var(--shadow-color);
+  color: var(--light-color);
 }
 
 .hidden {
@@ -218,6 +221,7 @@ body {
   position: absolute;
   right: 8px;
   bottom: 80px;
+  cursor: pointer;
 }
 
 .clear-icon:hover {

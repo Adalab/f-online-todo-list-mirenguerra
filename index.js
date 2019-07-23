@@ -9,7 +9,6 @@ let tasksList = [];
 let taskElement = {};
 let todayDate = {};
 initApp();
-console.log(tasksList);
 
 function initApp() {
   initCurrentDate();
